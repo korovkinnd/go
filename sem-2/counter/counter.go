@@ -2,11 +2,12 @@
 
 package counter
 
-// New возвращает функцию, выдающую арифметическую последовательность.
 func New(start, step int) func() int {
-	_ = step
+	current := start
 
 	return func() int {
-		return start
+		current += step
+
+		return current
 	}
 }

@@ -2,30 +2,39 @@
 
 package linkedlist
 
-// Prepend добавляет новый узел в начало списка.
 func Prepend(head *Node, value int) *Node {
-	_, _ = head, value
-
-	return nil
+	return &Node{Value: value, Next: head}
 }
 
-// Length возвращает число узлов списка.
 func Length(head *Node) int {
-	_ = head
+	length := 0
+	for n := head; n != nil; n = n.Next {
+		length++
+	}
 
-	return 0
+	return length
 }
 
-// Find ищет первый узел со значением value.
 func Find(head *Node, value int) *Node {
-	_, _ = head, value
+	for n := head; n != nil; n = n.Next {
+		if n.Value == value {
+			return n
+		}
+	}
 
 	return nil
 }
 
-// Reverse разворачивает список, меняя связи между существующими узлами.
 func Reverse(head *Node) *Node {
-	_ = head
+	var prev *Node
+	curr := head
 
-	return nil
+	for curr != nil {
+		next := curr.Next
+		curr.Next = prev
+		prev = curr
+		curr = next
+	}
+
+	return prev
 }
